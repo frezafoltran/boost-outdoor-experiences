@@ -48,6 +48,7 @@
 
 This is the Android project for Boost, an app where users relive, collect and share their outdoor experiences. Anytime you go out for a run, hike or bike ride, you can record your adventure directly in the app or automatically import it from Strava to create an experience. An experience can be previewed, in a similar way that you can view it in apps like <a href="https://play.google.com/store/apps/details?id=com.strava&hl=en&gl=US">Strava</a>, <a href="https://play.google.com/store/apps/details?id=com.garmin.android.apps.connectmobile&hl=en&gl=US">Garmin</a>, <a href="https://play.google.com/store/apps/details?id=com.nike.plusgps&hl=en&gl=US">Nike Run Club</a> and others.
 <br />
+<br />
 <div align="center">
  <img src="https://user-images.githubusercontent.com/27934583/178327159-5bcb3d4c-0811-4a0f-a042-39d98939f86b.jpg" alt="Boost 1" width="200">
   <img src="https://user-images.githubusercontent.com/27934583/178302093-c7110f6c-385c-4739-bb02-35614749a089.jpg" alt="Boost 2" width="200">
@@ -57,6 +58,7 @@ This is the Android project for Boost, an app where users relive, collect and sh
 In an experience, you can relive the path you navigated through, view photos, videos and dive into highlights along the way. You can customize highlights to show relevant segment specific data and edit the media in a natural way.
 
 <br />
+<br />
 <div align="center">
   <img src="https://user-images.githubusercontent.com/27934583/178302106-c0edb82c-6a80-4dd0-b2ee-aa7d69d4bdfa.jpg" alt="Boost 4" width="200">
   <img src="https://user-images.githubusercontent.com/27934583/178304022-6848fe7d-8f0a-4104-80da-81f2c1f9d6e8.jpg" alt="Boost 5" width="200">
@@ -65,6 +67,7 @@ In an experience, you can relive the path you navigated through, view photos, vi
 
 <br />
 You can also explore your experience feed in intuitive ways to gain insights on where in the world you have been exploring and how far you are pushing yourself. Share experiences with your friends and explore their experiences as well.
+<br />
 <br />
 
 <div align="center">
