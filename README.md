@@ -34,6 +34,7 @@
       <a href="#getting-started">Getting Started</a>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#demo">Demo</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -98,6 +99,9 @@ See the [open issues](https://github.com/frezafoltran/boost-outdoor-experiences/
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+<!-- DEMO -->
+## Demo
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/sEai0DrFrTE/0.jpg)](https://www.youtube.com/watch?v=sEai0DrFrTE)
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -126,7 +130,8 @@ Distributed under the GPLV3 License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Joao Freza Foltran - [LinkedIn](https://www.linkedin.com/in/joao-foltran/)
+<a href="https://frezafoltran.github.io/">Joao Freza Foltran</a>
+  - [LinkedIn](https://www.linkedin.com/in/joao-foltran/)
 
 Project Link: [https://github.com/frezafoltran/boost-outdoor-experiences](https://github.com/frezafoltran/boost-outdoor-experiences)
 
