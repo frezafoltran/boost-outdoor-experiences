@@ -1,0 +1,13 @@
+rootProject.name = "Boost"
+include ':app'
+include ':core-navigation'
+include ':feature-experience'
+include ':core-utils'
+include ':core-ui'
+include ':feature-profile'
+include ':core-map'
+include ':core-sync-strava'
+include ':core-networking'
+include ':core-charts'
+include ':core-localstorage'
+include ':core-experience'

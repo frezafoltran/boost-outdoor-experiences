@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.foltran.feature_profile.feed.presentation.ProfileFeedViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/stickyLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_sticky_header"
+            android:textAppearance="@style/BodyMedium"
+            android:textColor="@color/light_gray"
+            android:padding="@dimen/spacing_4"
+            android:translationZ="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/curFilterOptionsSpinnerWrapper"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/curFilterOptionsSpinnerWrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationZ="101dp"
+            android:background="@drawable/bg_sticky_header"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/stickyLabel"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/curFilterLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_4"
+                android:text="@string/profile_feed_sort_filter_label"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/light_gray"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/curFilterOptionsSpinner"/>
+
+            <Spinner
+                android:id="@+id/curFilterOptionsSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:spinnerMode="dropdown"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imageViewDropDownIcon"/>
+
+            <ImageView
+                android:id="@+id/imageViewDropDownIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="left"
+                android:paddingEnd="@dimen/spacing_5"
+                android:src="@drawable/ic_arrow_down"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="RtlHardcoded" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.foltran.feature_profile.feed.presentation.adapter.GridRecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <View
+            android:id="@+id/rvOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:translationZ="100dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/rvOverlayAction"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:onClick="@{() -> viewModel.onClickToggleFeedZoom()}"
+            android:background="@drawable/bg_floating_icon"
+            android:translationZ="100dp"
+            android:layout_marginBottom="80dp"
+            android:layout_marginEnd="12dp"
+            android:padding="@dimen/spacing_2"
+            android:src="@drawable/ic_zoom_out"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

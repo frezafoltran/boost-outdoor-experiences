@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Demo: Make a heatmap with Mapbox GL JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+    <link
+            href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css"
+            rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: black;
+      }
+      .mapboxgl-ctrl-logo {
+    display: none !important;
+}
+
+.marker-start-icon {
+    display: block;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	  background: radial-gradient(circle at 65% 15%, #F6931D 1px, #F6675E 3%, #F6931D 60%, #F6675E 100%);
+
+}
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+</body>
+</html>

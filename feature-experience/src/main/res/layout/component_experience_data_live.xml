@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="sharedViewModel"
+            type="com.foltran.feature_experience.core.presentation.ExperienceViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:translationZ="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftVerticalGuidelineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3333" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftVerticalGuidelineStart"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/rightVerticalGuidelineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.69999" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/rightVerticalGuidelineStart"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6666" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="50dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/curDistance"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            playFieldTranslucent="@{sharedViewModel.experiencePlayer.isStatusBlocked}"
+            tools:background="@drawable/bg_experience_data_live"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="@id/leftVerticalGuidelineEnd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontalGuideline">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circular_progress_bar"
+                android:background="@drawable/bg_circular_progress_bar"
+                android:padding="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="100"
+                android:progress="@{sharedViewModel.experiencePlayer.streams.distanceStream.currentProgress}" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/curDistanceHalfGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/curDistanceLeftGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.15" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/curDistanceRightGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.85" />
+
+            <TextView
+                android:id="@+id/curDistanceLabel"
+                style="@style/LabelMediumDark"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal|bottom"
+                android:text="@string/experience_label_current_distance"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/curDistanceValue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/curDistanceValue"
+                style="@style/BodyLarge"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal|bottom"
+                android:text="@{sharedViewModel.experiencePlayerDistance}"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/curDistanceHalfGuideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/curDistanceLabel" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/curDistanceLotti"
+                android:layout_width="200dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/curDistanceRightGuideline"
+                app:layout_constraintStart_toStartOf="@id/curDistanceLeftGuideline"
+                app:layout_constraintTop_toBottomOf="@id/curDistanceHalfGuideline"
+                app:lottie_rawRes="@raw/lotti_run_person"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/curPace"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            playFieldTranslucent="@{sharedViewModel.experiencePlayer.isStatusBlocked}"
+            tools:background="@drawable/bg_experience_data_live"
+            android:translationZ="100dp"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toStartOf="@id/rightVerticalGuidelineEnd"
+            app:layout_constraintStart_toEndOf="@id/leftVerticalGuidelineStart"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/curPaceHalfGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/curPaceBottomHorizontalGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.85" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/curPaceLeftGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.15" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/curPaceRightGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.85" />
+
+            <ProgressBar
+                android:id="@+id/progressBarBorderPace"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circular_progress_pace"
+                android:background="@drawable/bg_circular_progress_bar"
+                android:padding="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="100"
+                android:progress="100" />
+
+            <TextView
+                android:id="@+id/curPaceLabel"
+                style="@style/LabelMediumDark"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal|bottom"
+                android:text="@string/experience_label_current_pace"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/curPaceValue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/curPaceValue"
+                style="@style/BodyLarge"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal|bottom"
+                android:text="@{sharedViewModel.experiencePlayerSpeed}"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/curPaceHalfGuideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/curPaceLabel" />
+
+            <com.foltran.core_ui.components.experience.livedata.meter.ExperienceLiveDataMeterComponent
+                android:id="@+id/curPaceBar"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/spacing_3"
+                app:layout_constraintBottom_toTopOf="@id/curPaceBottomHorizontalGuideline"
+                app:layout_constraintEnd_toEndOf="@id/curPaceRightGuideline"
+                app:layout_constraintStart_toStartOf="@id/curPaceLeftGuideline"
+                app:layout_constraintTop_toBottomOf="@id/curPaceHalfGuideline"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/curElevation"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            playFieldTranslucent="@{sharedViewModel.experiencePlayer.isStatusBlocked}"
+            tools:background="@drawable/bg_experience_data_live"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/rightVerticalGuidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/horizontalGuideline">
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/curElevationHalfGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/curElevationBottomHorizontalGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.85" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/curElevationLeftGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.15" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/curElevationRightGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.85" />
+
+            <ProgressBar
+                android:id="@+id/progressBarBorderElevation"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circular_progress_yellow"
+                android:background="@drawable/bg_circular_progress_bar"
+                android:padding="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="100"
+                android:progress="100" />
+
+            <TextView
+                android:id="@+id/curElevationLabel"
+                style="@style/LabelMediumDark"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal|bottom"
+                android:text="@string/experience_label_current_elevation"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/curElevationValue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/curElevationValue"
+                style="@style/BodyLarge"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal|bottom"
+                android:text="@{sharedViewModel.experiencePlayerElevation}"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/curElevationHalfGuideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/curElevationLabel" />
+
+            <com.foltran.core_ui.components.experience.livedata.linechart.ExperienceLiveDataChartComponent
+                android:id="@+id/chartLiveData"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/spacing_3"
+                app:layout_constraintBottom_toTopOf="@id/curElevationBottomHorizontalGuideline"
+                app:layout_constraintEnd_toEndOf="@id/curElevationRightGuideline"
+                app:layout_constraintStart_toStartOf="@id/curElevationLeftGuideline"
+                app:layout_constraintTop_toBottomOf="@id/curElevationValue" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

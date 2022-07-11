@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="sharedViewModel"
+            type="com.foltran.feature_experience.core.presentation.ExperienceViewModel" />
+    </data>
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBarDivider"
+        app:layout_constraintBottom_toBottomOf="parent">
+    <com.foltran.core_ui.components.DragLinearLayout
+        android:id="@+id/linearLayoutDraggable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="100dp">
+
+
+        <com.foltran.core_ui.components.DraggableItemLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            isCollapsed="@{sharedViewModel.screenUIModel.experienceDetailsItemsDraggable}"
+            android:paddingVertical="@dimen/spacing_4">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerDataFields"
+                experienceViewPagerData="@{sharedViewModel.experienceUI.dataFieldsForPager}"
+                setupTabDots="@{true}"
+                isEnabled="@{sharedViewModel.screenUIModel.experienceViewPagerUI.isTabBarVisible}"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerDataFieldsBottom"
+                experienceViewPagerData="@{sharedViewModel.experienceUI.dataFieldsForPagerBottom}"
+                setupTabDots="@{false}"
+                isEnabled="@{false}"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:alpha="@{sharedViewModel.screenUIModel.experienceViewPagerUI.curAlpha}"
+                android:clickable="true"
+                android:focusable="true"
+                goneUnless="@{!sharedViewModel.screenUIModel.experienceViewPagerUI.isTabBarVisible}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewPagerDataFields" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabDots"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="@dimen/spacing_4"
+                android:background="@android:color/transparent"
+                invisibleUnless="@{sharedViewModel.screenUIModel.experienceViewPagerUI.isTabBarVisible}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewPagerDataFields"
+                app:layout_constraintBottom_toTopOf="@id/iconMoveDataFields"
+                app:tabBackground="@drawable/tab_selector"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp" />
+
+            <ImageView
+                android:id="@+id/iconMoveDataFields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                goneUnless="@{sharedViewModel.screenUIModel.experienceDetailsItemsDraggable}"
+                android:src="@drawable/ic_move_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </com.foltran.core_ui.components.DraggableItemLayout>
+
+        <com.foltran.core_ui.components.DraggableItemLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            isCollapsed="@{sharedViewModel.screenUIModel.experienceDetailsItemsDraggable}"
+            android:paddingVertical="@dimen/spacing_4"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/componentChartDataExperience"
+                layout="@layout/component_experience_chart"
+                app:experienceDetailsChartSpinnerUI="@{sharedViewModel.chartSpinnerUI}"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/iconMoveChart2"/>
+
+            <ImageView
+                android:id="@+id/iconMoveChart2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                goneUnless="@{sharedViewModel.screenUIModel.experienceDetailsItemsDraggable}"
+                android:src="@drawable/ic_move_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </com.foltran.core_ui.components.DraggableItemLayout>
+
+        <com.foltran.core_ui.components.DraggableItemLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            isCollapsed="@{sharedViewModel.screenUIModel.experienceDetailsItemsDraggable}"
+            android:paddingVertical="@dimen/spacing_4"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/componentExperienceChart"
+                layout="@layout/component_experience_chart"
+                app:experienceDetailsChartSpinnerUI="@{sharedViewModel.chartSpinnerComparisonUI}"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/iconMoveChart"/>
+
+            <ImageView
+                android:id="@+id/iconMoveChart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                goneUnless="@{sharedViewModel.screenUIModel.experienceDetailsItemsDraggable}"
+                android:src="@drawable/ic_move_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </com.foltran.core_ui.components.DraggableItemLayout>
+
+        <com.foltran.core_ui.components.DraggableItemLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/spacing_4"
+            isCollapsed="@{sharedViewModel.screenUIModel.experienceDetailsItemsDraggable}"
+            android:orientation="vertical">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerPictures"
+                experiencePictureViewPagerData="@{sharedViewModel.experienceUI.pictureUrls}"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginTop="@dimen/spacing_5"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toTopOf="@id/tabDotsPictures"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabDotsPictures"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginHorizontal="@dimen/spacing_4"
+                android:background="@android:color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewPagerPictures"
+                app:layout_constraintBottom_toTopOf="@id/iconMoveImages"
+                app:tabBackground="@drawable/tab_selector"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp" />
+
+            <ImageView
+                android:id="@+id/iconMoveImages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                goneUnless="@{sharedViewModel.screenUIModel.experienceDetailsItemsDraggable}"
+                android:src="@drawable/ic_move_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </com.foltran.core_ui.components.DraggableItemLayout>
+
+
+    </com.foltran.core_ui.components.DragLinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

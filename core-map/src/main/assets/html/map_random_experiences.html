@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Demo: Route finding with the Directions API and Turf.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Import Mapbox GL JS -->
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+    <link
+            href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css"
+            rel="stylesheet"
+    />
+
+    <!-- Import Mapbox GL Directions -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
+    <link
+            rel="stylesheet"
+            href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css"
+            type="text/css"
+    />
+
+    <!-- Import Turf & Polyline -->
+    <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mapbox-polyline/1.1.1/polyline.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Open Sans', sans-serif;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+
+      .sidebar {
+        position: absolute;
+        margin: 20px 20px 30px 20px;
+        width: 25%;
+        top: 0;
+        bottom: 0;
+        padding: 20px;
+        background-color: #fff;
+        overflow-y: scroll;
+      }
+
+      .card {
+        font-size: small;
+        border-bottom: solid #d3d3d3 2px;
+        margin-bottom: 6px;
+      }
+
+      .card-header {
+        font-weight: bold;
+        padding: 6px;
+      }
+
+      .no-route {
+        background-color: #d3d3d3;
+        color: #f00;
+      }
+
+      .obstacle-found {
+        background-color: #d3d3d3;
+        color: #fff;
+      }
+
+      .route-found {
+        background-color: #33a532;
+        color: #fff;
+      }
+
+      .card-details {
+        padding: 3px 6px;
+      }
+    </style>
+</head>
+
+<body>
+<div id="map"></div>
+<div class="sidebar">
+    <h1>Reports</h1>
+    <div id="reports"></div>
+</div>
+
+<script>
+
+      const base = {
+  "id": {
+    "S": "fake"
+  },
+  "user_id": {
+    "S": "joao_foltran"
+  },
+  "athlete": {
+    "M": {
+      "id": {
+        "N": "000"
+      }
+    }
+  },
+  "averageCadence": {
+    "N": "87.9"
+  },
+  "averageHeartRate": {
+    "N": "152.6"
+  },
+  "averageSpeed": {
+    "N": "3.058"
+  },
+  "distance": {
+    "N": "5326.4"
+  },
+  "elapsedTime": {
+    "N": "2018"
+  },
+  "endLatLng": {
+    "L": [
+      {
+        "N": "40.7648500520736"
+      },
+      {
+        "N": "-73.98015344515443"
+      }
+    ]
+  },
+  "locationCity": {
+    "S": "New York"
+  },
+  "locationCountry": {
+    "NULL": true
+  },
+  "locationState": {
+    "NULL": true
+  },
+  "map": {
+    "M": {
+      "id": {
+        "S": "fake"
+      },
+      "summaryPolyline": {
+        "S": ""
+      }
+    }
+  },
+  "movingTime": {
+    "N": "1742"
+  },
+  "name": {
+    "S": "Morning Run"
+  },
+  "source": {
+    "S": "strava"
+  },
+  "startDate": {
+    "S": "2022-02-28T14:57:26Z"
+  },
+  "startLatitude": {
+    "N": "40.76516713947058"
+  },
+  "startLatLng": {
+    "L": [
+      {
+        "N": "40.76516713947058"
+      },
+      {
+        "N": "-73.98094025440514"
+      }
+    ]
+  },
+  "startLongitude": {
+    "N": "-73.98094025440514"
+  },
+  "type": {
+    "S": "Run"
+  }
+};
+
+      mapboxgl.accessToken = 'TODO';
+      const map = new mapboxgl.Map({
+        container: 'map', // Specify the container ID
+        style: 'mapbox://styles/mapbox/light-v10', // Specify which map style to use
+        center: [-84.5, 38.05], // Specify the starting position [lng, lat]
+        zoom: 2 // Specify the starting zoom
+      });
+
+      const directions = new MapboxDirections({
+        accessToken: mapboxgl.accessToken,
+        unit: 'metric',
+        profile: 'mapbox/walking',
+        alternatives: false,
+        geometries: 'geojson',
+        controls: { instructions: false },
+        flyTo: false
+      });
+
+      var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+
+      map.addControl(directions, 'top-right');
+      map.scrollZoom.enable();
+
+      const clearances = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-84.47426, 38.06673]
+            },
+            properties: {
+              clearance: "13' 2"
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-84.47208, 38.06694]
+            },
+            properties: {
+              clearance: "13' 7"
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-84.60485, 38.12184]
+            },
+            properties: {
+              clearance: "13' 7"
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-84.61905, 37.87504]
+            },
+            properties: {
+              clearance: "12' 0"
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-84.55946, 38.30213]
+            },
+            properties: {
+              clearance: "13' 6"
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-84.27235, 38.04954]
+            },
+            properties: {
+              clearance: "13' 6"
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-84.27264, 37.82917]
+            },
+            properties: {
+              clearance: "11' 6"
+            }
+          }
+        ]
+      };
+
+      const obstacle = turf.buffer(clearances, 0.25, { units: 'kilometers' });
+      let bbox = [0, 0, 0, 0];
+      let polygon = turf.bboxPolygon(bbox);
+
+      map.on('load', () => {
+        map.addLayer({
+          id: 'clearances',
+          type: 'fill',
+          source: {
+            type: 'geojson',
+            data: obstacle
+          },
+          layout: {},
+          paint: {
+            'fill-color': '#f03b20',
+            'fill-opacity': 0.5,
+            'fill-outline-color': '#f03b20'
+          }
+        });
+
+        map.addSource('theRoute', {
+          type: 'geojson',
+          data: {
+            type: 'Feature'
+          }
+        });
+
+        map.addLayer({
+          id: 'theRoute',
+          type: 'line',
+          source: 'theRoute',
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#cccccc',
+            'line-opacity': 0.5,
+            'line-width': 13,
+            'line-blur': 0.5
+          }
+        });
+
+        // Source and layer for the bounding box
+        map.addSource('theBox', {
+          type: 'geojson',
+          data: {
+            type: 'Feature'
+          }
+        });
+        map.addLayer({
+          id: 'theBox',
+          type: 'fill',
+          source: 'theBox',
+          layout: {},
+          paint: {
+            'fill-color': '#FFC300',
+            'fill-opacity': 0.5,
+            'fill-outline-color': '#FFC300'
+          }
+        });
+      });
+
+      let counter = 0;
+      const maxAttempts = 50;
+      let emoji = '';
+      let collision = '';
+      let detail = '';
+      const reports = document.getElementById('reports');
+
+      function addCard(id, element, clear, detail) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        // Add the response to the individual report created above
+        const heading = document.createElement('div');
+        // Set the class type based on clear value
+        heading.className =
+          clear === true
+            ? 'card-header route-found'
+            : 'card-header obstacle-found';
+        heading.innerHTML =
+          id === 0
+            ? `${emoji} The route ${collision}`
+            : `${emoji} Route ${id} ${collision}`;
+
+        const details = document.createElement('div');
+        details.className = 'card-details';
+        details.innerHTML = `This ${detail} obstacles.`;
+
+        card.appendChild(heading);
+        card.appendChild(details);
+        element.insertBefore(card, element.firstChild);
+      }
+
+      function noRoutes(element) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        // Add the response to the individual report created above
+        const heading = document.createElement('div');
+        heading.className = 'card-header no-route';
+        emoji = '🛑';
+        heading.innerHTML = `${emoji} Ending search.`;
+
+        // Add details to the individual report
+        const details = document.createElement('div');
+        details.className = 'card-details';
+        details.innerHTML = `No clear route found in ${counter} tries.`;
+
+        card.appendChild(heading);
+        card.appendChild(details);
+        element.insertBefore(card, element.firstChild);
+      }
+
+      function logExperience(route) {
+        const id_prepend = "fake_";
+        const id_postpend = Date.now().toString();
+
+        const out = base;
+        out["id"]["S"] = id_prepend + id_postpend;
+        out["distance"]["N"] = "" + route.distance;
+        out["map"]["M"]["summaryPolyline"]["S"] = route.geometry;
+        out["startDate"]["S"] = Math.random() > 0.5 ? "2022-02-28T14:57:26Z" : "2021-02-28T14:57:26Z"
+
+        const startCoordinateElem= $('*[placeholder="Choose a starting place"]');
+        const startCoordinates = startCoordinateElem[0].value.split(",");
+        const startCoordinatesNumber = [parseFloat(startCoordinates[0]), parseFloat(startCoordinates[1])];
+
+        out["startLatitude"]["N"] = startCoordinates[1];
+         out["startLongitude"]["N"] = startCoordinates[0];
+
+         mapboxClient.geocoding
+            .reverseGeocode({
+              query: startCoordinatesNumber
+            })
+            .send()
+            .then(function(response) {
+              if (
+                response &&
+                response.body &&
+                response.body.features &&
+                response.body.features.length
+              ) {
+                out["locationCity"]["S"] = response.body.features[0].text;
+              }
+            });
+
+
+        console.log(route);
+        console.log(out);
+      }
+
+      directions.on('clear', () => {
+        map.setLayoutProperty('theRoute', 'visibility', 'none');
+        map.setLayoutProperty('theBox', 'visibility', 'none');
+
+        counter = 0;
+        reports.innerHTML = '';
+      });
+
+      directions.on('route', (event) => {
+        logExperience(event.route[0]);
+        // Hide the route and box by setting the opacity to zero
+        map.setLayoutProperty('theRoute', 'visibility', 'none');
+        map.setLayoutProperty('theBox', 'visibility', 'none');
+
+        if (counter >= maxAttempts) {
+          noRoutes(reports);
+        } else {
+          // Make each route visible
+          for (const route of event.route) {
+            // Make each route visible
+            map.setLayoutProperty('theRoute', 'visibility', 'visible');
+            map.setLayoutProperty('theBox', 'visibility', 'visible');
+
+            // Get GeoJSON LineString feature of route
+            const routeLine = polyline.toGeoJSON(route.geometry);
+
+            // Create a bounding box around this route
+            // The app will find a random point in the new bbox
+            bbox = turf.bbox(routeLine);
+            polygon = turf.bboxPolygon(bbox);
+
+            // Update the data for the route
+            // This will update the route line on the map
+            map.getSource('theRoute').setData(routeLine);
+
+            // Update the box
+            map.getSource('theBox').setData(polygon);
+
+            const clear = turf.booleanDisjoint(obstacle, routeLine);
+
+            if (clear === true) {
+              collision = 'does not intersect any obstacles!';
+              detail = `takes ${(route.duration / 60).toFixed(
+                0
+              )} minutes and avoids`;
+              emoji = '✔️';
+              map.setPaintProperty('theRoute', 'line-color', '#74c476');
+              // Hide the box
+              map.setLayoutProperty('theBox', 'visibility', 'none');
+              // Reset the counter
+              counter = 0;
+            } else {
+              // Collision occurred, so increment the counter
+              counter = counter + 1;
+              // As the attempts increase, expand the search area
+              // by a factor of the attempt count
+              polygon = turf.transformScale(polygon, counter * 0.01);
+              bbox = turf.bbox(polygon);
+              collision = 'is bad.';
+              detail = `takes ${(route.duration / 60).toFixed(
+                0
+              )} minutes and hits`;
+              emoji = '⚠️';
+              map.setPaintProperty('theRoute', 'line-color', '#de2d26');
+
+              // Add a randomly selected waypoint to get a new route from the Directions API
+              const randomWaypoint = turf.randomPoint(1, { bbox: bbox });
+              directions.setWaypoint(
+                0,
+                randomWaypoint['features'][0].geometry.coordinates
+              );
+            }
+            // Add a new report section to the sidebar
+            addCard(counter, reports, clear, detail);
+          }
+        }
+      });
+    </script>
+</body>
+</html>

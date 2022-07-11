@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.foltran.feature_experience.settings.photos.presentation.ExperienceSettingsPhotosViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutPhotoSettings"
+        android:layout_width="match_parent"
+        android:layout_height ="match_parent"
+        android:background="@color/bg_primary"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_begin="@dimen/spacing_5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_end="@dimen/spacing_5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <TextView
+            android:id="@+id/photoSettingsHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/spacing_5"
+            android:onClick="@{() -> viewModel.finishActivity()}"
+            style="@style/HeadingLarge"
+            android:text="@string/experience_settings_photos"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintTop_toTopOf="parent"
+            android:drawablePadding="@dimen/spacing_5"
+            app:drawableStartCompat="@drawable/ic_arrow_left" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/loaderContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/bg_primary_variant_translucent"
+            android:translationZ="100dp"
+            android:clickable="true"
+            android:focusable="true"
+            goneUnless="@{viewModel.hasPendingPhotosChange}"
+            app:layout_constraintTop_toBottomOf="@id/photoSettingsHeader"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/loader"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:translationZ="200dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:lottie_rawRes="@raw/lapin_lotti"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/mapViewSeparatorForPin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/experience_settings_photo_pin_guideline_begin"
+            />
+
+        <WebView
+            android:id="@+id/photosWebView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/photoSettingsHeader"
+            app:layout_constraintBottom_toTopOf="@id/curImageEmptyHolder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/photosPinMarker"
+            android:layout_width="@dimen/experience_settings_photo_pin_dimen"
+            android:layout_height="@dimen/experience_settings_photo_pin_dimen"
+            android:src="@drawable/ic_pin"
+            app:layout_constraintTop_toTopOf="@id/photosWebView"
+            app:layout_constraintBottom_toBottomOf="@id/mapViewSeparatorForPin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/curImageHolder"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            imageUrl="@{viewModel.currentPhotoUrl}"
+            goneUnless="@{viewModel.isPhotoSelected}"
+            app:layout_constraintTop_toTopOf="@id/curImageEmptyHolder"
+            app:layout_constraintBottom_toBottomOf="@id/curImageEmptyHolder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            android:id="@+id/curImageHolderObfuscate"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_experience_settings_photo"
+            app:layout_constraintTop_toTopOf="@id/curImageEmptyHolder"
+            app:layout_constraintBottom_toBottomOf="@id/curImageEmptyHolder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/curImageEmptyHolder"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/experience_settings_photo_height"
+            android:text="@string/experience_settings_photos_empty"
+            android:gravity="center"
+            android:background="@color/bg_primary_variant_translucent"
+            android:padding="@dimen/spacing_10"
+            invisibleUnless="@{!viewModel.isPhotoSelected}"
+            style="@style/BodyMedium"
+            app:layout_constraintBottom_toTopOf="@id/graph"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <ImageView
+            android:id="@+id/removePhotoButton"
+            android:layout_width="@dimen/experience_settings_photo_icons"
+            android:layout_height="@dimen/experience_settings_photo_icons"
+            android:src="@drawable/ic_delete"
+            android:layout_marginEnd="@dimen/spacing_3"
+            android:layout_marginBottom="@dimen/spacing_3"
+            android:padding="@dimen/experience_settings_photo_icons_padding"
+            android:background="@drawable/bg_floating_icon"
+            android:onClick="@{() -> viewModel.removePhotoCommit()}"
+            goneUnless="@{viewModel.isPhotoSelected}"
+            app:layout_constraintBottom_toTopOf="@id/graph"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/changePhotoButton"
+            android:layout_width="@dimen/experience_settings_photo_icons"
+            android:layout_height="@dimen/experience_settings_photo_icons"
+            android:src="@drawable/ic_edit"
+            android:layout_marginEnd="@dimen/spacing_3"
+            android:layout_marginBottom="@dimen/spacing_3"
+            android:padding="@dimen/experience_settings_photo_icons_padding"
+            android:background="@drawable/bg_floating_icon"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/graph"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/addPhotoButton"
+            android:layout_width="@dimen/experience_settings_photo_icons"
+            android:layout_height="@dimen/experience_settings_photo_icons"
+            android:src="@drawable/ic_add"
+            android:layout_marginEnd="@dimen/spacing_3"
+            android:layout_marginBottom="@dimen/spacing_3"
+            android:padding="@dimen/experience_settings_photo_icons_padding"
+            android:background="@drawable/bg_floating_icon"
+            android:onClick="@{() -> viewModel.addPhoto()}"
+            goneUnless="@{!viewModel.isPhotoSelected}"
+            app:layout_constraintBottom_toBottomOf="@id/curImageEmptyHolder"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <include
+            android:id="@+id/graph"
+            layout="@layout/component_chart_simple"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/experience_settings_photo_chart_height"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/cameraIconsRow"
+            app:chartDataModelPhotos="@{viewModel.chart}"
+            app:chartCallbackSimple="@{viewModel}"/>
+
+
+        <View
+            android:id="@+id/chartSelectorMarker"
+            android:layout_width="@dimen/experience_settings_photo_chart_marker_width"
+            android:layout_height="0dp"
+            android:background="@color/primary"
+            app:layout_constraintHorizontal_bias="@{viewModel.chartSelectorRatio}"
+            app:layout_constraintStart_toStartOf="@id/graph"
+            app:layout_constraintEnd_toEndOf="@id/graph"
+            app:layout_constraintTop_toTopOf="@id/graph"
+            app:layout_constraintBottom_toBottomOf="@id/graph"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/chartSelectorMarkerIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_move_single_horizontal"
+            app:layout_constraintStart_toStartOf="@id/chartSelectorMarker"
+            app:layout_constraintEnd_toEndOf="@id/chartSelectorMarker"
+            app:layout_constraintTop_toTopOf="@id/chartSelectorMarker"
+            app:layout_constraintBottom_toBottomOf="@id/chartSelectorMarker"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.currentDistanceLabel}"
+            android:background="@drawable/bg_floating_icon"
+            android:paddingVertical="@dimen/spacing_3"
+            android:paddingHorizontal="@dimen/spacing_5"
+            style="@style/BodyMedium"
+            app:layout_constraintStart_toStartOf="@id/chartSelectorMarker"
+            app:layout_constraintEnd_toEndOf="@id/chartSelectorMarker"
+            app:layout_constraintBottom_toBottomOf="@id/chartSelectorMarker" />
+
+        <RelativeLayout
+            android:id="@+id/cameraIconsRow"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<data>
+    <variable
+        name="viewModel"
+        type="com.foltran.feature_experience.menu.presentation.ExperienceMenuViewModel" />
+</data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_primary"
+        android:paddingBottom="50dp"
+        android:fitsSystemWindows="true">
+
+        <ImageView
+            goneUnless="@{viewModel.focusedExperienceLoading}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_loader"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPagerLapSelection"
+                goneUnless="@{!viewModel.focusedExperienceLoading}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                menuLapsViewPagerData="@{viewModel.focusedExperienceLapSelections}"
+                experienceMenuLapsSelector="@{viewModel}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/buttonGo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/viewPagerLapSelectionTouchpadFast" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerLapSelectionTouchpad"
+            goneUnless="@{!viewModel.focusedExperienceLoading}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:background="@color/translucent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonGo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/viewPagerLapSelectionTouchpadFast" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerLapSelectionTouchpadFast"
+            goneUnless="@{!viewModel.focusedExperienceLoading}"
+            android:layout_width="36dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:background="@color/bg_primary_variant_translucent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonGo"
+            app:layout_constraintStart_toEndOf="@id/viewPagerLapSelection"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            goneUnless="@{!viewModel.focusedExperienceLoading}"
+            android:src="@drawable/ic_move_single"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonGo"
+            app:layout_constraintStart_toStartOf="@id/viewPagerLapSelectionTouchpadFast"
+            app:layout_constraintEnd_toEndOf="@id/viewPagerLapSelectionTouchpadFast"/>
+
+        <Button
+            android:id="@+id/buttonGo"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="go"
+            goneUnless="@{!viewModel.focusedExperienceLoading}"
+            android:onClick="@{() -> viewModel.goToExperience()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Animate Experience</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+    <style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+.icon-marker {
+  width: 36px;
+  height: 36px;
+}
+
+.logo-beetle {
+  background-image: url('https://i.ibb.co/wrSFpKH/ic-logo-white.png');
+  background-color: #2F7A32;
+  background-size: cover;
+  transition: width 1s, height 1s;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+
+
+</body>
+</html>

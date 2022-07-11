@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="chartDataModelPhotos"
+            type="com.foltran.core_charts.models.ChartDataModelPhotos" />
+        <variable
+            name="chartCallbackSimple"
+            type="com.foltran.core_charts.adapters.ChartCallback" />
+    </data>
+    <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+        android:id="@+id/aa_chart_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:chartCallbackSimple="@{chartCallbackSimple}"
+        app:chartDataModelPhotos="@{chartDataModelPhotos}">
+
+    </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
+
+</layout>

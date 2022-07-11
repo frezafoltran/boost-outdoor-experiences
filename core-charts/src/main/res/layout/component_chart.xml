@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="chartDataModel"
+            type="com.foltran.core_charts.models.ChartDataModel" />
+    </data>
+    <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+        android:id="@+id/aa_chart_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:chartDataModel="@{chartDataModel}">
+
+    </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
+
+</layout>

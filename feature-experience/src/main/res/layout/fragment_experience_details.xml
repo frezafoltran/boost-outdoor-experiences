@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="sharedViewModel"
+            type="com.foltran.feature_experience.core.presentation.ExperienceViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_experience_main"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_begin="@dimen/spacing_5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_end="@dimen/spacing_5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerWrapper"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/experience_details_header_height"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:id="@+id/handleSlide"
+                android:layout_width="@dimen/experience_main_bottom_sheet_handle_width"
+                android:layout_height="@dimen/experience_main_bottom_sheet_handle_height"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/experience_main_bottom_sheet_handle_margin_top"
+                android:background="@drawable/view_bottom_sheet_handle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/labeledTextCurrentSegment"
+                layout="@layout/component_labeled_text_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_5"
+                android:background="@color/secondary"
+                app:labelResId="@{sharedViewModel.experienceUI.nameLabelResId}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/handleSlide"
+                app:text="@{sharedViewModel.experienceUI.name}" />
+
+            <LinearLayout
+                android:id="@+id/iconsWrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/handleSlide"
+                app:layout_constraintBottom_toBottomOf="@id/labeledTextCurrentSegment"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageViewPauseIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    drawableId="@{sharedViewModel.experiencePlayerPlayIcon}"
+                    android:layout_marginTop="@dimen/spacing_5"
+                    android:onClick="@{() -> sharedViewModel.togglePlayStatus()}"
+                    />
+
+                <ImageView
+                    android:id="@+id/imageViewStopIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_stop"
+                    android:layout_marginTop="@dimen/spacing_5"
+                    android:onClick="@{() -> sharedViewModel.experiencePlayer.finish()}"
+                    android:paddingStart="@dimen/spacing_5"
+                    goneUnless="@{sharedViewModel.experiencePlayerShouldShowFinishButton}"
+                    tools:ignore="RtlSymmetry"
+                    />
+
+                <ImageView
+                    android:id="@+id/imageViewShareIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_share"
+                    android:layout_marginTop="@dimen/spacing_5"
+                    android:paddingStart="@dimen/spacing_5"
+                    android:onClick="@{() -> sharedViewModel.onClickOpenShareTray()}"
+                    tools:ignore="RtlSymmetry" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/topBarDivider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/headerWrapper">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="@{sharedViewModel.experiencePlayer.curPhase}"
+                android:layout_height="3dp"
+                android:background="@color/secondary"
+                android:layout_marginTop="@dimen/spacing_5"
+                app:layout_constraintTop_toBottomOf="@id/labeledTextCurrentSegment" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="@{1f - sharedViewModel.experiencePlayer.curPhase}"
+                android:layout_height="2dp"
+                android:background="@color/bg_primary_variant"
+                android:layout_marginTop="@dimen/spacing_5"
+                app:layout_constraintTop_toBottomOf="@id/labeledTextCurrentSegment" />
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/experiencePreviewContainer"
+            layout="@layout/component_experience_details_preview"
+            app:sharedViewModel="@{sharedViewModel}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topBarDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="roundImageComponentParams"
+            type="com.foltran.core_ui.components.RoundImageComponentParams" />
+    </data>
+    <LinearLayout
+        android:id="@+id/linearLayoutWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="@{() -> roundImageComponentParams.onClick.invoke()}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="@dimen/radius_10"
+                app:cardBackgroundColor="@color/secondary_variant"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                tools:layout_width="50dp"
+                tools:layout_height="50dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutMargin="@{roundImageComponentParams.hasBorder ? @dimen/spacing_1 : @dimen/spacing_0}"
+                    app:cardBackgroundColor="@android:color/black"
+                    app:cardCornerRadius="@dimen/radius_10"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:imageUrlSavedLocal="@{roundImageComponentParams.imageUrl}"
+                        app:drawableId="@{roundImageComponentParams.drawableId}"
+                        tools:src="@drawable/ic_profile_white"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@string/navigation_profile"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

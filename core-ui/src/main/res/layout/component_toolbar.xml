@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="toolbarComponentParams"
+            type="com.foltran.core_ui.components.ToolbarComponentParams" />
+    </data>
+    <LinearLayout
+        android:id="@+id/linearLayoutWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:background="@drawable/bg_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            tools:layout_height="42dp">
+
+            <include
+                layout="@layout/component_round_image"
+                goneUnless="@{toolbarComponentParams.hasLeftIcon}"
+                android:id="@+id/roundImageRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                bind:heightMatchParent="@{toolbarComponentParams.leftIcon.scalable}"
+                android:layout_marginVertical="@dimen/spacing_4"
+                android:layout_marginEnd="@dimen/spacing_5"
+                android:background="@android:color/transparent"
+                bind:roundImageComponentParams="@{toolbarComponentParams.leftRoundImageComponentParams}"
+                tools:layout_height="30dp"
+                tools:layout_width="30dp"
+                />
+
+            <TextView
+                android:id="@+id/textViewToolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_5"
+                android:text="@{toolbarComponentParams.getTitle(context)}"
+                goneUnless="@{toolbarComponentParams.hasTitle}"
+                tools:text="Hi Mark"
+                tools:visibility="gone"
+                style="@style/ToolBarTextAppearance" />
+
+            <EditText
+                android:id="@+id/editTextToolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_5"
+                android:text="@={toolbarComponentParams.editText}"
+                goneUnless="@{toolbarComponentParams.hasEditText}"
+                android:hint="search mark"
+                style="@style/ToolBarTextAppearance" />
+
+            <include
+                layout="@layout/component_round_image"
+                goneUnless="@{toolbarComponentParams.hasRightIcon}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginVertical="@dimen/spacing_4"
+                android:layout_marginEnd="@dimen/spacing_5"
+                android:background="@android:color/transparent"
+                bind:roundImageComponentParams="@{toolbarComponentParams.rightRoundImageComponentParams}"
+                tools:layout_height="30dp"
+                tools:layout_width="30dp"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <include
+            layout="@layout/component_toolbar_filters"
+            bind:goneUnless="@{toolbarComponentParams.hasFilterToolbar}"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            />
+
+    </LinearLayout>
+</layout>

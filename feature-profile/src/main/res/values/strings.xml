@@ -1,0 +1,19 @@
+<resources>
+    <string name="hello_blank_fragment">PROFILE</string>
+    <string name="temp_img">https://i.ibb.co/3kndShK/Screenshot-20220224-130345-Maps.jpg</string>
+
+    <string name="profile_name_label">Name</string>
+    <string name="profile_gender_label">Gender</string>
+
+    <string name="cd_back">Back</string>
+    <string name="click_label_select">select</string>
+    <string name="state_descr_selected">Selected</string>
+    <string name="state_descr_not_selected">Not selected</string>
+
+    <string name="profile_feed_sort_filter_label">sort by</string>
+    <string name="profile_feed_sort_filter_date">date</string>
+
+    <string name="profile_feed_sort_option_date">date</string>
+    <string name="profile_feed_sort_option_distance">distance</string>
+    <string name="profile_feed_sort_option_location">location</string>
+</resources>

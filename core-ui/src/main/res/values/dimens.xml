@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing_0">0dp</dimen>
+    <dimen name="spacing_1">1dp</dimen>
+    <dimen name="spacing_2">2dp</dimen>
+    <dimen name="spacing_3">4dp</dimen>
+    <dimen name="spacing_4">8dp</dimen>
+    <dimen name="spacing_5">12dp</dimen>
+    <dimen name="spacing_6">16dp</dimen>
+    <dimen name="spacing_7">20dp</dimen>
+    <dimen name="spacing_8">24dp</dimen>
+    <dimen name="spacing_10">28dp</dimen>
+    <dimen name="spacing_13">38dp</dimen>
+    <dimen name="spacing_15">48dp</dimen>
+    <dimen name="spacing_20">90dp</dimen>
+
+    <dimen name="spacing_50">180dp</dimen>
+
+    <dimen name="list_item_large_profile_image_height">36dp</dimen>
+    <dimen name="list_item_large_map_height">360dp</dimen>
+
+    <dimen name="component_graph_item_width">16dp</dimen>
+    <dimen name="component_graph_item_spacing">3dp</dimen>
+
+    <dimen name="radius_0">2dp</dimen>
+    <dimen name="radius_5">8dp</dimen>
+    <dimen name="radius_7">16dp</dimen>
+    <dimen name="radius_10">1000dp</dimen>
+    <dimen name="radius_100">100000dp</dimen>
+
+
+    <dimen name="text_size_1">12sp</dimen>
+    <dimen name="text_size_2">16sp</dimen>
+    <dimen name="text_size_3">20sp</dimen>
+    <dimen name="text_size_4">24sp</dimen>
+    <dimen name="text_size_5">28sp</dimen>
+
+    <dimen name="downwards_drop_shadow_height">16dp</dimen>
+
+    <dimen name="icon_size_small">20dp</dimen>
+    <dimen name="icon_size_medium">36dp</dimen>
+</resources>

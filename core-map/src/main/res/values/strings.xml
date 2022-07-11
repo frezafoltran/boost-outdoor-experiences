@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mapbox_access_token">TODO</string>
+
+    <string name="mapbox_style_uri_key">cl0k7xz3x001814mnw9nuw3kf</string>
+    <string name="mapbox_style_uri">mapbox://styles/frezafoltran/cl0k7xz3x001814mnw9nuw3kf</string>
+</resources>

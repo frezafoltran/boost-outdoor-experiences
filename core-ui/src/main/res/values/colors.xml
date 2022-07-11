@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="translucent">#00FFFFFF</color>
+    <color name="translucent_50">#80FFFFFF</color>
+    <color name="primary">#2F4858</color>
+    <color name="primary_dark">#20303A</color>
+    <color name="primary_dark_translucent_80">#CC20303A</color>
+    <color name="primary_variant">#4A5680</color>
+
+    <color name="secondary">#F6675E</color>
+    <color name="secondary_translucent">#80F6675E</color>
+    <color name="secondary_translucentish">#BF5F59</color>
+    <color name="secondary_variant">#F6931D</color>
+    <color name="secondary_variant_translucent">#80F6931D</color>
+    <color name="secondary_variant_lightly_translucent">#99F6931D</color>
+
+    <color name="tertiary">#7D7B7B</color>
+    <color name="tertiary_variant">#9F9F9F</color>
+
+    <color name="green_basis">#297C2D</color>
+    <color name="red_basis">#B80441</color>
+
+    <color name="highlight">#895B95</color>
+    <color name="highlight_variant">#CC5888</color>
+
+    <color name="bg_primary">#000000</color>
+    <color name="bg_primary_lightly_translucent">#B3000000</color>
+    <color name="bg_primary_translucent">#1A000000</color>
+    <color name="bg_primary_variant">#292929</color>
+    <color name="bg_primary_variant_translucent">#80292929</color>
+
+    <color name="blur_red_transparent">#0D4CAF50</color>
+
+    <color name="white">#FFFFFF</color>
+</resources>

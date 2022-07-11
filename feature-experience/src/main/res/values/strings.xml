@@ -1,0 +1,41 @@
+<resources>
+    <string name="feed">FEED</string>
+    <string name="record">RECORD</string>
+
+    <string name="experience_type_run">Run</string>
+
+    <string name="experience_label_distance">Distance</string>
+    <string name="experience_label_current_distance">Distance</string>
+
+    <string name="experience_label_pace">Pace</string>
+    <string name="experience_label_current_pace">Pace</string>
+
+    <string name="experience_label_cadence">Cadence</string>
+
+    <string name="experience_label_best_pace">Best Pace</string>
+
+    <string name="experience_label_max_heart_rate">Max Heart Rate</string>
+
+    <string name="experience_label_elevation_gain">Elevation Gain</string>
+    <string name="experience_label_current_elevation">Elevation</string>
+
+
+
+    <string name="experience_data_pace">%1$s /min</string>
+    <string name="experience_data_distance">%1$s km</string>
+
+
+    <string name="experience_start_record_toolbar">Record an Experience</string>
+    <string name="experience_start_record_action_start">Start</string>
+
+    <string name="experience_location_tag">%1$s %2$s\u00B0C</string>
+
+    <string name="experience_label_segment">Segment:</string>
+
+    <string name="experience_settings_back_to_experience">back to experience</string>
+    <string name="experience_settings_photos">Manage photos</string>
+    <string name="experience_settings_photos_empty">Click on plus to add photo or click on an existing photo to edit</string>
+    <string name="experience_settings_photos_total_count_label">Number of photos: </string>
+
+    <string name="experience_settings_toggle_order">Toggle order</string>
+</resources>

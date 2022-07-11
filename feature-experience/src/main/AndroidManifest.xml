@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.foltran.feature_experience">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Boost">
+        <activity
+            android:name=".core.presentation.ExperienceActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name="com.foltran.feature_experience.settings.photos.presentation.ExperienceSettingsPhotosActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".chart.presentation.ExperienceChartActivity"
+            android:screenOrientation="landscape"
+            android:exported="false" />
+    </application>
+</manifest>

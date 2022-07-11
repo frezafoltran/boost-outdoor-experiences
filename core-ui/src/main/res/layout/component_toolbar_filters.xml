@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="goneUnless"
+            type="java.lang.Boolean" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/spacing_4"
+        goneUnless="@{goneUnless}"
+        tools:layout_height="42dp"
+        android:orientation="horizontal"
+        android:background="@color/bg_primary">
+
+        <EditText
+            android:id="@+id/editTextSearchField"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:hint="search..."
+            android:textColorHint="@color/tertiary"
+            android:singleLine="true"
+            android:background="@null"
+            style="@style/BodyMedium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageViewFilterIcon"
+            android:drawableStart="@drawable/ic_search_white"/>
+
+        <ImageView
+            android:id="@+id/imageViewFilterIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_filter_white"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_home">Home</string>
+    <string name="navigation_experience_record">Record</string>
+    <string name="navigation_profile">Profile</string>
+
+    <string name="top_bar_search">Search</string>
+    <string name="empty_string" />
+</resources>

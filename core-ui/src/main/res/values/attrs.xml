@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundImageComponent">
+<!--        <attr name="textStyle">-->
+<!--            <enum name="normal" value="0"/>-->
+<!--            <enum name="bold" value="1"/>-->
+<!--            <enum name="italic" value="2"/>-->
+<!--        </attr>-->
+        <attr name="imageDrawable" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="DragLinearLayout">
+        <attr name="scrollSensitiveHeight" format="dimension" />
+        <attr name="placeholderView" format="reference" />
+    </declare-styleable>
+</resources>

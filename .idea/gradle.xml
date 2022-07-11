@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/core-charts" />
+            <option value="$PROJECT_DIR$/core-experience" />
+            <option value="$PROJECT_DIR$/core-localstorage" />
+            <option value="$PROJECT_DIR$/core-map" />
+            <option value="$PROJECT_DIR$/core-navigation" />
+            <option value="$PROJECT_DIR$/core-networking" />
+            <option value="$PROJECT_DIR$/core-sync-strava" />
+            <option value="$PROJECT_DIR$/core-ui" />
+            <option value="$PROJECT_DIR$/core-utils" />
+            <option value="$PROJECT_DIR$/feature-experience" />
+            <option value="$PROJECT_DIR$/feature-profile" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

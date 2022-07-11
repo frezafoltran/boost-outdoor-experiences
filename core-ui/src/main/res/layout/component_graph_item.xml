@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_height="match_parent"
+        tools:background="@android:color/black"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/item_graph_component"
+            android:layout_marginHorizontal="@dimen/component_graph_item_spacing"
+            />
+
+        <View
+            android:id="@+id/xAxisIndicator"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="@dimen/spacing_3"
+            android:layout_marginHorizontal="@dimen/spacing_10"
+            android:background="@drawable/item_graph_component_dot"
+            />
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            tools:text="5:30"
+            style="@style/GraphAxisText"/>
+
+
+    </LinearLayout>
+</layout>

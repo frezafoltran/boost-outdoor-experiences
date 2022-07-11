@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.foltran.feature_experience.core.presentation.ExperienceViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary"
+    android:clickable="true"
+    android:fitsSystemWindows="true"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/buttonClose"
+        android:layout_width="@dimen/icon_size_medium"
+        android:layout_height="@dimen/icon_size_medium"
+        android:layout_gravity="right"
+        android:layout_marginStart="@dimen/spacing_3"
+        android:layout_marginTop="@dimen/spacing_3"
+        android:elevation="1dp"
+        android:onClick="@{() -> viewModel.onClickCloseSettings()}"
+        android:padding="@dimen/spacing_4"
+        android:src="@drawable/ic_close_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/buttonClose"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/experience_settings_selection_padding"
+            android:text="@string/experience_settings_photos"
+            android:onClick="@{() -> viewModel.onClickPhotoSettings()}"
+            style="@style/BodyMedium" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/experience_settings_selection_divider_height"
+            android:background="@color/tertiary_variant"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/experience_settings_selection_padding"
+            android:text="@string/experience_settings_toggle_order"
+            android:onClick="@{() -> viewModel.toggleExperienceDetailsItemsDraggable()}"
+            style="@style/BodyMedium"
+            app:drawableEndCompat="@drawable/ic_change" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/experience_settings_selection_divider_height"
+            android:background="@color/tertiary_variant"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

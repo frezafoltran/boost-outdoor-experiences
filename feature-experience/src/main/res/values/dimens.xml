@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="experience_main_bottom_sheet_peek_height_offset">82dp</dimen>
+    <dimen name="experience_main_bottom_sheet_peek_height">90dp</dimen>
+    <dimen name="experience_main_bottom_sheet_peek_height_offset_more">94dp</dimen>
+    <dimen name="experience_main_bottom_sheet_y_offset">100dp</dimen>
+    <dimen name="experience_main_bottom_sheet_handle_width">80dp</dimen>
+    <dimen name="experience_main_bottom_sheet_handle_height">2dp</dimen>
+    <dimen name="experience_main_bottom_sheet_handle_margin_top">10dp</dimen>
+
+    <dimen name="experience_main_graph_height">200dp</dimen>
+
+    <dimen name="experience_details_header_height">64dp</dimen>
+
+    <dimen name="viewpager_current_item_horizontal_margin">5dp</dimen>
+
+    <dimen name="viewpager_current_item_vertical_margin">5dp</dimen>
+
+    <dimen name="experience_settings_selection_padding">10dp</dimen>
+    <dimen name="experience_settings_selection_divider_height">1dp</dimen>
+
+    <dimen name="experience_settings_photo_icons">32dp</dimen>
+    <dimen name="experience_settings_photo_icons_padding">5dp</dimen>
+
+    <dimen name="experience_settings_photo_height">280dp</dimen>
+    <dimen name="experience_settings_photo_chart_height">120dp</dimen>
+    <dimen name="experience_settings_photo_pin_dimen">32dp</dimen>
+    <dimen name="experience_settings_photo_pin_guideline_begin">432dp</dimen>
+
+    <dimen name="experience_settings_photo_chart_marker_width">4dp</dimen>
+</resources>

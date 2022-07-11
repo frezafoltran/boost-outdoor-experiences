@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="mapCoreUIModel"
+            type="com.foltran.core_map.core.presentation.model.MapCoreUIModel" />
+        <variable
+            name="mapCoreDisplayConfig"
+            type="com.foltran.core_map.core.presentation.model.MapCoreDisplayConfig" />
+        <variable
+            name="isMapInMain"
+            type="Boolean" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        goneUnless="@{!isMapInMain}"
+        hasMap="@{!isMapInMain}"
+        mapCoreUIModel="@{mapCoreUIModel}"
+        mapCoreDisplayConfig="@{mapCoreDisplayConfig}"
+        >
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
