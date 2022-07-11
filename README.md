@@ -142,8 +142,6 @@ Project Link: [https://github.com/frezafoltran/boost-outdoor-experiences](https:
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
 * [AAChartModel for Kotlin] (https://github.com/AAChartModel/AAChartCore-Kotlin)
 * [MapBox] (https://docs.mapbox.com/android/maps/guides/)
 * [Read Me Template] (https://github.com/othneildrew/Best-README-Template)
