@@ -11,7 +11,7 @@
   <h2 align="center">Boost</h2>
 
   <p align="center">
-    A place to share your outdoor experiences in an ineractive and immersive way
+    A place to share your outdoor experiences in an interactive and immersive way
     <br />
     <a href="https://www.youtube.com/watch?v=sEai0DrFrTE">View Demo</a>
     ·
