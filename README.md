@@ -13,7 +13,7 @@
   <p align="center">
     A place to share your outdoor experiences in an ineractive and immersive way
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://www.youtube.com/watch?v=sEai0DrFrTE">View Demo</a>
     ·
     <a href="https://github.com/frezafoltran/boost-outdoor-experiences/issues">Report Bug</a>
     ·
