@@ -101,7 +101,7 @@ Boost is a work in progress and there is currently no public repository for the 
 
 See the [open issues](https://github.com/frezafoltran/boost-outdoor-experiences/issues) for a full list of proposed features (and known issues).
 
-For more information, also check out this <a href="https://medium.com/@joaofoltran/list/boost-outdoor-experiences-88de64bc3c6d">list of articles</a> I wrote explaining some of the inspiration and coding implementations behind this project. 
+For more information, also check out this <a href="https://medium.com/@joaofoltran/list/boost-outdoor-experiences-88de64bc3c6d">series of articles</a> I wrote explaining some of the inspiration and coding implementations behind this project. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
