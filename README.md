@@ -46,7 +46,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is the Android project for Boost, an app where users relive, collect and share their outdoor experiences. Anytime you go out for a run, hike or bike ride, you can record your adventure directly in the app or automatically import it from Strava to create an experience. An experience can be previewed, in a similar way that you can view it in apps like <a href="https://play.google.com/store/apps/details?id=com.strava&hl=en&gl=US">Strava</a>, <a href="https://play.google.com/store/apps/details?id=com.garmin.android.apps.connectmobile&hl=en&gl=US">Garmin</a>, <a href="https://play.google.com/store/apps/details?id=com.nike.plusgps&hl=en&gl=US">Nike Run Club</a> and others.
+This is the Android project for Boost, an app where users relive, collect and share their outdoor experiences. For a quick overview of the app, check out <a href="https://www.youtube.com/watch?v=sEai0DrFrTE">this one 1-minute demo</a>. 
+
+Anytime you go out for a run, hike or bike ride, you can record your adventure directly in the app or automatically import it from Strava to create an experience. An experience can be previewed to show your general health, performance and geographical metrics, and the experience can be replayed to dive into these metrics, the activity's path and attached videos and photos in a real-time replay of events. The ability to replay an experience offers a more interactive and immersive user experience than apps like <a href="https://play.google.com/store/apps/details?id=com.strava&hl=en&gl=US">Strava</a>, <a href="https://play.google.com/store/apps/details?id=com.garmin.android.apps.connectmobile&hl=en&gl=US">Garmin</a>, <a href="https://play.google.com/store/apps/details?id=com.nike.plusgps&hl=en&gl=US">Nike Run Club</a> and others.
 <br />
 <br />
 <div align="center">
